@@ -60,4 +60,18 @@ describe("App component", () => {
     expect(titleOne).toBeInTheDocument();
     expect(titleTwo).toBeInTheDocument();
   });
+  it("should render the scientific name of each plant", async () => {
+    render(<App />);
+
+    const scientificName = await screen.findByText("Ophrys tenthredinifera");
+
+    expect(scientificName).toBeInTheDocument();
+  });
+  it("should render the price of each plant", async () => {
+    render(<App />);
+
+    const price = await screen.findByText(4.95);
+
+    expect(price).toBeInTheDocument();
+  });
 });
