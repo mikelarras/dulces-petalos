@@ -1,9 +1,12 @@
 import "./App.css";
+import logo from "./assets/logo.svg";
 
 function App() {
   return (
     <>
-      <h1>Dulces pétalos</h1>
+      <header>
+        <img src={logo} alt="logo tienda" />
+      </header>
     </>
   );
 }
