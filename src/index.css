@@ -2,6 +2,22 @@
   --main-bg-color: #f9f9f9;
 }
 
+.nunito-700 {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 28px;
+}
+
+.dm-sans-400 {
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+}
+
 body {
     margin: 0;
     background-color: var(--main-bg-color);
@@ -17,4 +33,21 @@ header img {
     height: 50px;
     width: 50px;
     margin: 8px;
+}
+
+.card {
+    height: 422px;
+    width: 384px;
+    background-color:white;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.card img {
+    width: 352px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 16px;
 }
