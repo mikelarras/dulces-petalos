@@ -25,17 +25,15 @@ function App() {
         <div className="searchBar">
           <input type="text" placeholder="Busca en nuestra tienda"></input>
         </div>
-        <div className="cardContainer">
-          <ul>
-            {plants.map((plant) => {
-              return (
-                <li>
-                  <Card plant={plant}></Card>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+        <ul>
+          {plants.map((plant) => {
+            return (
+              <li key={plant.id}>
+                <Card plant={plant}></Card>
+              </li>
+            );
+          })}
+        </ul>
       </main>
     </>
   );
