@@ -9,13 +9,29 @@ import { SearchBar } from "./components/SearchBar";
 
 function App() {
   const [plants, setPlants] = useState<Plant[]>([]);
+  const [filteredPlants, setFilteredPlants] = useState<Plant[]>([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const plantService = new PlantService(ApiPlantRepository);
     plantService.getPlants().then((resp) => {
       setPlants(resp);
+      setFilteredPlants(resp);
     });
   }, []);
+
+  useEffect(() => {
+    const newPlants = filterPlants(plants, search);
+    setFilteredPlants(newPlants);
+  }, [search]);
+
+  const filterPlants = (plants: Plant[], search: string) => {
+    return plants.filter(
+      (plant) =>
+        plant?.name?.toLowerCase()?.includes(search.toLowerCase()) ||
+        plant?.scientificName?.toLowerCase()?.includes(search.toLowerCase())
+    );
+  };
 
   return (
     <>
@@ -23,8 +39,8 @@ function App() {
         <img src={logo} alt="logo tienda" />
       </header>
       <main>
-        <SearchBar />
-        <PlantList plants={plants} />
+        <SearchBar setSearch={setSearch} />
+        <PlantList plants={filteredPlants} />
       </main>
     </>
   );
