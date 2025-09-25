@@ -4,7 +4,7 @@ import { PlantService } from "./core/services/plantService";
 import { useState, useEffect } from "react";
 import { type Plant } from "./core/domain/Plant";
 import { ApiPlantRepository } from "./core/infrastructure/ApiPlantRepository";
-import { Card } from "./components/Card";
+import { PlantList } from "./components/PlantList";
 import { SearchBar } from "./components/SearchBar";
 
 function App() {
@@ -24,15 +24,7 @@ function App() {
       </header>
       <main>
         <SearchBar />
-        <ul>
-          {plants.map((plant) => {
-            return (
-              <li key={plant.id}>
-                <Card plant={plant}></Card>
-              </li>
-            );
-          })}
-        </ul>
+        <PlantList plants={plants} />
       </main>
     </>
   );
