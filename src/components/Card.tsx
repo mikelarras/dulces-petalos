@@ -1,5 +1,6 @@
 import { type Plant } from "../core/domain/Plant";
 import arrow from "../assets/arrow.svg";
+import { Link } from "react-router-dom";
 
 export const Card = ({ plant }: { plant: Plant }) => {
   return (
@@ -14,9 +15,9 @@ export const Card = ({ plant }: { plant: Plant }) => {
           <div className="price">
             <p className="nunito-500">€ {plant.price}</p>
           </div>
-          <div className="arrow">
+          <Link to={`/${plant.id}`} className="arrow">
             <img src={arrow} alt="" />
-          </div>
+          </Link>
         </div>
       </div>
     </>

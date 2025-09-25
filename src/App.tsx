@@ -6,6 +6,7 @@ import { type Plant } from "./core/domain/Plant";
 import { ApiPlantRepository } from "./core/infrastructure/ApiPlantRepository";
 import { PlantList } from "./components/PlantList";
 import { SearchBar } from "./components/SearchBar";
+import { Link } from "react-router-dom";
 
 function App() {
   const [plants, setPlants] = useState<Plant[]>([]);
@@ -36,7 +37,9 @@ function App() {
   return (
     <>
       <header>
-        <img src={logo} alt="logo tienda" />
+        <Link to={"/"}>
+          <img src={logo} alt="logo tienda" />
+        </Link>
       </header>
       <main>
         <SearchBar setSearch={setSearch} />
