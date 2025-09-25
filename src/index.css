@@ -35,7 +35,22 @@ header img {
     margin: 8px;
 }
 
-.card {
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-flow: row wrap;
+    max-width: 1200px;
+    gap: 24px;
+}
+
+li {
     height: 422px;
     width: 384px;
     background-color:white;
@@ -45,9 +60,16 @@ header img {
     align-content: center;
 }
 
-.card img {
+li img {
     width: 352px;
     height: 300px;
     object-fit: cover;
     border-radius: 16px;
+}
+
+
+li div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
