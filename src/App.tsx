@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { type Plant } from "./core/domain/Plant";
 import { ApiPlantRepository } from "./core/infrastructure/ApiPlantRepository";
 import { Card } from "./components/Card";
+import { SearchBar } from "./components/SearchBar";
 
 function App() {
   const [plants, setPlants] = useState<Plant[]>([]);
@@ -22,9 +23,7 @@ function App() {
         <img src={logo} alt="logo tienda" />
       </header>
       <main>
-        <div className="searchBar">
-          <input type="text" placeholder="Busca en nuestra tienda"></input>
-        </div>
+        <SearchBar />
         <ul>
           {plants.map((plant) => {
             return (

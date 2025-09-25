@@ -40,6 +40,20 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top: 40px;
+    gap: 48px;
+}
+
+.searchBar input {
+    width: 600px;
+    height: 40px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    background-image: url('./assets/search-icon.svg');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding-left: 40px;
+  font-size: 16px;
 }
 
 ul {
