@@ -42,6 +42,6 @@ const transformPlant = (apiPlant: ApiPlant): Plant => {
     water: `Regar ${apiPlant.wateringsPerWeek} ${
       apiPlant.wateringsPerWeek === 1 ? "vez" : "veces"
     } por semana`,
-    fertilizer: apiPlant.fertilizerType,
+    fertilizer: `Fertilizar con ${apiPlant.fertilizerType}`,
   };
 };
