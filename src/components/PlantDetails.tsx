@@ -27,17 +27,21 @@ export const PlantDetails = () => {
     <div className="detailsContainer">
       <div className="breadCrumbs">
         <Link to={"/"}>Inicio</Link>
-        <span>{` > ${plantDetails.name}`}</span>
-      </div>
-      <div className="detail">
-        <img src={plantDetails.image!} alt="plant details image" />
+        <span>{">"}</span>
+        <span>{plantDetails.name}</span>
       </div>
       <div className="detailsInfo">
-        <h1>{plantDetails.name}</h1>
-        <p>{plantDetails.scientificName}</p>
-        <p>€ {plantDetails.price}</p>
-        <p>{plantDetails.water}</p>
-        <p>{plantDetails.fertilizer}</p>
+        <img src={plantDetails.image!} alt="plant details image" />
+        <div className="detailsText nunito-500">
+          <h1>{plantDetails.name}</h1>
+          <p className="detailsScientificName">{plantDetails.scientificName}</p>
+          <p className="detailsPrice nunito-700">€ {plantDetails.price}</p>
+          <ul>
+            <li>{plantDetails.water}</li>
+            <li>{plantDetails.fertilizer}</li>
+          </ul>
+          <button>Añadir al carrito</button>
+        </div>
       </div>
     </div>
   );

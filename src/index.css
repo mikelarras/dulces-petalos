@@ -1,5 +1,6 @@
 :root {
   --main-bg-color: #f9f9f9;
+  --accent: #771E42;
 }
 
 .nunito-700 {
@@ -63,16 +64,17 @@ main {
   font-size: 16px;
 }
 
-ul {
+.cardList {
     list-style-type: none;
     display: flex;
     flex-flow: row wrap;
+    justify-content: center;
     max-width: 1200px;
     gap: 24px;
     padding: 0px;
 }
 
-li {
+.cardList li {
     height: 422px;
     width: 384px;
     background-color:white;
@@ -83,16 +85,17 @@ li {
     box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
 
-.card-text {
-    width: 90%;
-}
 
-li img {
+.cardList li img {
     width: 352px;
     height: 300px;
     object-fit: cover;
     border-radius: 16px;
     margin-bottom: 16px;
+}
+
+.card-text {
+    width: 90%;
 }
 
 .floating-items {
@@ -127,8 +130,96 @@ li img {
     align-items: center;
 }
 
-.arrow img {
+.cardList .arrow img {
     height: 24px;
     width: 24px;
     padding-top: 15px;
+}
+
+.detailsContainer {
+    display: flex-column;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+}
+
+.detailsInfo {
+    display: flex;
+}
+
+.detailsInfo img {
+    margin-top: 30px;
+    width: 600px;
+    border-radius: 20px;
+}
+
+.detailsText {
+    width: 600px;
+    padding-left: 30px;
+    padding-top: 15px;
+}
+
+.breadCrumbs {
+    display: flex;
+    gap: 10px;
+}
+
+a:link {
+    text-decoration: none;
+    color: black;
+}
+a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+.detailsPrice {
+    font-size: 20px;
+}
+
+.detailsText button {
+    width: 136px;
+    height: 44px;
+    border-radius: 100px;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+}
+
+.detailsScientificName {
+    color: transparent;
+}
+
+@media (max-width: 1200px) {
+
+    .searchBar input {
+        width: 320px;
+    }
+
+    .detailsContainer {
+        width: 360px;
+    }
+
+    .detailsInfo img {
+        width: 352px;
+        height: 300px;
+        object-fit: cover;
+    }
+
+    .detailsInfo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .detailsScientificName {
+        color: black;
+    }
+
+    .detailsText {
+        padding: 0;
+    }
+
+    .detailsInfo button {
+        width: 360px;
+    }
 }
