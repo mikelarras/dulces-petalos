@@ -5,6 +5,7 @@ import userEvent from "@testing-library/user-event";
 import App from "../App";
 import { type Plant } from "../core/domain/Plant";
 import { PlantsOverview } from "../components/PlantsOverview";
+import { PlantDetails } from "../components/PlantDetails";
 
 const mockedResponse: Plant[] = [
   {
@@ -109,7 +110,7 @@ describe("Plants overview component", () => {
         </MemoryRouter>
       );
 
-      const searchPlantPlaceholer = screen.getByPlaceholderText(
+      const searchPlantPlaceholer = await screen.findByPlaceholderText(
         "Busca en nuestra tienda"
       );
       await userEvent.type(searchPlantPlaceholer, "Orquídea");
@@ -132,5 +133,37 @@ describe("Plants overview component", () => {
     await userEvent.type(searchPlantPlaceholer, "Orquídea");
     const rosa = screen.queryByText("Rosa de damasco");
     expect(rosa).not.toBeInTheDocument();
+  });
+});
+
+describe("Details component", () => {
+  beforeEach(async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue({
+      ok: true,
+      json: async () => mockedResponse[0],
+    } as Response);
+  });
+
+  it("should show the breadcrumbs", async () => {
+    render(
+      <MemoryRouter>
+        <PlantDetails />
+      </MemoryRouter>
+    );
+
+    const breadcrumbs = await screen.findByText("Inicio");
+
+    expect(breadcrumbs).toBeInTheDocument();
+  });
+
+  it("should show the plant price", async () => {
+    render(
+      <MemoryRouter>
+        <PlantDetails />
+      </MemoryRouter>
+    );
+
+    const detailsPrice = await screen.findByText("€ 4.95");
+    expect(detailsPrice).toBeInTheDocument();
   });
 });

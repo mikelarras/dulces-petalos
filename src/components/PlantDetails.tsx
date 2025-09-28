@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import logo from "../assets/logo.svg";
 import { useEffect, useState } from "react";
 import { PlantService } from "../core/services/plantService";
 import { ApiPlantRepository } from "../core/infrastructure/ApiPlantRepository";
 
 export const PlantDetails = () => {
   const params = useParams<{ id: string }>();
-  console.log(params);
   const [plantDetails, setPlantDetails] = useState({
     id: null,
     name: null,
@@ -32,7 +30,7 @@ export const PlantDetails = () => {
         <span>{` > ${plantDetails.name}`}</span>
       </div>
       <div className="detail">
-        <img src={plantDetails.image} alt="" />
+        <img src={plantDetails.image!} alt="plant details image" />
       </div>
       <div className="detailsInfo">
         <h1>{plantDetails.name}</h1>
