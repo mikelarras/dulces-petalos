@@ -3,18 +3,11 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { PlantService } from "../core/services/plantService";
 import { ApiPlantRepository } from "../core/infrastructure/ApiPlantRepository";
+import { type Plant } from "../core/domain/Plant";
 
 export const PlantDetails = () => {
   const params = useParams<{ id: string }>();
-  const [plantDetails, setPlantDetails] = useState({
-    id: null,
-    name: null,
-    scientificName: null,
-    image: null,
-    price: null,
-    water: null,
-    fertilizer: null,
-  });
+  const [plantDetails, setPlantDetails] = useState<Plant | null>(null);
 
   useEffect(() => {
     const plantService = new PlantService(ApiPlantRepository);
@@ -22,6 +15,8 @@ export const PlantDetails = () => {
       setPlantDetails(resp);
     });
   }, [params]);
+
+  if (!plantDetails) return <p>Cargando...</p>;
 
   return (
     <div className="detailsContainer">
