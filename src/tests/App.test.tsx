@@ -1,8 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import App from "../App";
 import { type Plant } from "../core/domain/Plant";
+import { PlantsOverview } from "../components/PlantsOverview";
 
 const mockedResponse: Plant[] = [
   {
@@ -26,21 +28,33 @@ const mockedResponse: Plant[] = [
 ];
 
 describe("App component", () => {
+  it("should render the header", async () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    const logo = await screen.findByAltText("logo tienda");
+
+    expect(logo).toBeInTheDocument();
+  });
+});
+
+describe("Plants overview component", () => {
   beforeEach(async () => {
     vi.spyOn(globalThis, "fetch").mockResolvedValue({
       ok: true,
       json: async () => mockedResponse,
     } as Response);
   });
-  it("should render the header", async () => {
-    render(<App />);
 
-    const logo = await screen.findByAltText("logo tienda");
-
-    expect(logo).toBeInTheDocument();
-  });
   it("should render the searchbar", async () => {
-    render(<App />);
+    render(
+      <MemoryRouter>
+        <PlantsOverview />
+      </MemoryRouter>
+    );
 
     const searchBar = await screen.findByPlaceholderText(
       "Busca en nuestra tienda"
@@ -48,8 +62,13 @@ describe("App component", () => {
 
     expect(searchBar).toBeInTheDocument();
   });
+
   it("should render a list of plants", async () => {
-    render(<App />);
+    render(
+      <MemoryRouter>
+        <PlantsOverview />
+      </MemoryRouter>
+    );
 
     const titleOne = await screen.findByText("Orquídea");
     const titleTwo = await screen.findByText("Rosa de damasco");
@@ -57,24 +76,38 @@ describe("App component", () => {
     expect(titleOne).toBeInTheDocument();
     expect(titleTwo).toBeInTheDocument();
   });
+
   it.skip("should render the scientific name of each plant", async () => {
-    render(<App />);
+    render(
+      <MemoryRouter>
+        <PlantsOverview />
+      </MemoryRouter>
+    );
 
     const scientificName = await screen.findByText("Ophrys tenthredinifera");
 
     expect(scientificName).toBeInTheDocument();
   });
-  it.skip("should render the price of each plant", async () => {
-    render(<App />);
 
-    const price = await screen.findByText(4.95);
+  it("should render the price of each plant", async () => {
+    render(
+      <MemoryRouter>
+        <PlantsOverview />
+      </MemoryRouter>
+    );
+
+    const price = await screen.findByText("€ 4.95");
 
     expect(price).toBeInTheDocument();
   });
 
-  describe("Search Bar", () => {
+  describe("search bar", () => {
     it("should show elements that fit the description", async () => {
-      render(<App />);
+      render(
+        <MemoryRouter>
+          <PlantsOverview />
+        </MemoryRouter>
+      );
 
       const searchPlantPlaceholer = screen.getByPlaceholderText(
         "Busca en nuestra tienda"
@@ -84,15 +117,20 @@ describe("App component", () => {
 
       expect(orquidea).toBeInTheDocument();
     });
-    it("should not show elements that don't fit the description", async () => {
-      render(<App />);
+  });
 
-      const searchPlantPlaceholer = screen.getByPlaceholderText(
-        "Busca en nuestra tienda"
-      );
-      await userEvent.type(searchPlantPlaceholer, "Orquídea");
-      const rosa = screen.queryByText("Rosa de damasco");
-      expect(rosa).not.toBeInTheDocument();
-    });
+  it("should not show elements that don't fit the description", async () => {
+    render(
+      <MemoryRouter>
+        <PlantsOverview />
+      </MemoryRouter>
+    );
+
+    const searchPlantPlaceholer = screen.getByPlaceholderText(
+      "Busca en nuestra tienda"
+    );
+    await userEvent.type(searchPlantPlaceholer, "Orquídea");
+    const rosa = screen.queryByText("Rosa de damasco");
+    expect(rosa).not.toBeInTheDocument();
   });
 });

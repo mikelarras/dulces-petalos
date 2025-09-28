@@ -15,7 +15,11 @@ export const Card = ({ plant }: { plant: Plant }) => {
           <div className="price">
             <p className="nunito-500">€ {plant.price}</p>
           </div>
-          <Link to={`/${plant.id}`} className="arrow">
+          <Link
+            to={`/${plant.id}`}
+            className="arrow"
+            data-testid="details-link"
+          >
             <img src={arrow} alt="" />
           </Link>
         </div>
